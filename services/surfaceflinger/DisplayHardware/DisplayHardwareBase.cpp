@@ -122,12 +122,10 @@ bool DisplayHardwareBase::canDraw() const {
 }
 
 void DisplayHardwareBase::releaseScreen() const {
-	//ALOGE("set mScreenAcquired as false 000000000");
     mScreenAcquired = false;
 }
 
 void DisplayHardwareBase::acquireScreen() const {
-	//ALOGE("set mScreenAcquired as true 1111111111");
     mScreenAcquired = true;
 }
 

@@ -1493,7 +1493,6 @@ void SurfaceFlinger::onScreenAcquired() {
 void SurfaceFlinger::onScreenReleased() {
     const DisplayHardware& hw(graphicPlane(0).displayHardware());
     if (hw.isScreenAcquired()) {
-	//ALOGE("Enter %s", __FUNCTION__);
         mEventThread->onScreenReleased();
         hw.releaseScreen();
         // from this point on, SF will stop drawing
