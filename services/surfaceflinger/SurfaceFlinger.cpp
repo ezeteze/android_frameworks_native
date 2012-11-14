@@ -1995,8 +1995,11 @@ public:
 status_t SurfaceFlinger::electronBeamOffAnimationImplLocked()
 {
     const DisplayHardware& hw(graphicPlane(0).displayHardware());
-#ifndef QCOM_HARDWARE
+
+	//ALOGE("Enter %s", __FUNCTION__);
+#if 0
     // get screen geometry
+    const DisplayHardware& hw(graphicPlane(0).displayHardware());
     const uint32_t hw_w = hw.getWidth();
     const uint32_t hw_h = hw.getHeight();
     const Region screenBounds(hw.getBounds());
@@ -2171,10 +2174,9 @@ status_t SurfaceFlinger::electronBeamOffAnimationImplLocked()
     glDisable(GL_TEXTURE_2D);
     glDisable(GL_BLEND);
 #endif
-#ifdef QCOM_HARDWARE
 	if(hw.canDraw())
 		hw.releaseScreen();
-#endif
+	
     return NO_ERROR;
 }
 
@@ -2337,18 +2339,18 @@ status_t SurfaceFlinger::turnElectronBeamOffImplLocked(int32_t mode)
     ATRACE_CALL();
 	//ALOGE("Enter %s", __FUNCTION__);
     DisplayHardware& hw(graphicPlane(0).editDisplayHardware());
-#ifndef QCOM_HARDWARE
+#if 0
     if (!hw.canDraw()) {
 	ALOGE("RETURN !!!RETURN !!!RETURN !!!RETURN !!!RETURN !!!");
         // we're already off
         return NO_ERROR;
     }
-#else
-    if(!hw.canDraw()){
-    	//ALOGE("SCREEN has bean release, but we requrie it.");
-    	hw.acquireScreen();
-    }
 #endif
+	if(!hw.canDraw()){
+		//ALOGE("SCREEN has bean release, but we requrie it.");
+		hw.acquireScreen();
+	}
+	
     // turn off hwc while we're doing the animation
     hw.getHwComposer().disable();
     // and make sure to turn it back on (if needed) next time we compose
