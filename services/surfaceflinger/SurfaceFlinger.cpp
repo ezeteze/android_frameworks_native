@@ -1795,6 +1795,10 @@ status_t SurfaceFlinger::onTransact(
             const int uid = ipc->getCallingUid();
             if ((uid != AID_GRAPHICS) &&
                     !PermissionCache::checkPermission(sReadFramebuffer, pid, uid)) {
+		//fix bug cap screen FC liuyongsheng		
+		if(uid == 1000){
+		   break;			
+		}
                 ALOGE("Permission Denial: "
                         "can't read framebuffer pid=%d, uid=%d", pid, uid);
                 return PERMISSION_DENIED;
