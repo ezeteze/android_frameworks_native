@@ -1998,10 +1998,6 @@ public:
 
 status_t SurfaceFlinger::electronBeamOffAnimationImplLocked()
 {
-    const DisplayHardware& hw(graphicPlane(0).displayHardware());
-
-	//ALOGE("Enter %s", __FUNCTION__);
-#if 0
     // get screen geometry
     const DisplayHardware& hw(graphicPlane(0).displayHardware());
     const uint32_t hw_w = hw.getWidth();
@@ -2010,9 +2006,6 @@ status_t SurfaceFlinger::electronBeamOffAnimationImplLocked()
 
     GLfloat u, v;
     GLuint tname;
-
-	ALOGE("Enter %s", __FUNCTION__);
-	
     status_t result = renderScreenToTextureLocked(0, &tname, &u, &v);
     if (result != NO_ERROR) {
         return result;
@@ -2177,10 +2170,6 @@ status_t SurfaceFlinger::electronBeamOffAnimationImplLocked()
     glDeleteTextures(1, &tname);
     glDisable(GL_TEXTURE_2D);
     glDisable(GL_BLEND);
-#endif
-	if(hw.canDraw())
-		hw.releaseScreen();
-	
     return NO_ERROR;
 }
 
@@ -2341,20 +2330,13 @@ status_t SurfaceFlinger::electronBeamOnAnimationImplLocked()
 status_t SurfaceFlinger::turnElectronBeamOffImplLocked(int32_t mode)
 {
     ATRACE_CALL();
-	//ALOGE("Enter %s", __FUNCTION__);
+
     DisplayHardware& hw(graphicPlane(0).editDisplayHardware());
-#if 0
     if (!hw.canDraw()) {
-	ALOGE("RETURN !!!RETURN !!!RETURN !!!RETURN !!!RETURN !!!");
         // we're already off
         return NO_ERROR;
     }
-#endif
-	if(!hw.canDraw()){
-		//ALOGE("SCREEN has bean release, but we requrie it.");
-		hw.acquireScreen();
-	}
-	
+
     // turn off hwc while we're doing the animation
     hw.getHwComposer().disable();
     // and make sure to turn it back on (if needed) next time we compose
