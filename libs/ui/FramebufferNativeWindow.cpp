@@ -102,8 +102,6 @@ FramebufferNativeWindow::FramebufferNativeWindow()
         if(fbDev->numFramebuffers >= MIN_NUM_FRAME_BUFFERS &&
            fbDev->numFramebuffers <= MAX_NUM_FRAME_BUFFERS){
             mNumBuffers = fbDev->numFramebuffers;
-        } else {
-            mNumBuffers = MIN_NUM_FRAME_BUFFERS;
         }
 #endif
         mNumFreeBuffers = mNumBuffers;
