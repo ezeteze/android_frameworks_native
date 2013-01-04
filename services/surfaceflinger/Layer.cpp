@@ -764,6 +764,7 @@ void Layer::lockPageFlip(bool& recomputeVisibleRegions)
     //getName().string(), mSwapDirtyRect.left, mSwapDirtyRect.top, mSwapDirtyRect.right,
     //mSwapDirtyRect.bottom, mDirtyRectRepeatCount);
 #endif
+    }
 }
 
 void Layer::unlockPageFlip(
