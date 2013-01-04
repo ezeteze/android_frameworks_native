@@ -759,7 +759,6 @@ void Layer::lockPageFlip(bool& recomputeVisibleRegions)
             mDirtyRectRepeatCount=0;
             mSwapDirtyRect.clear();
         }
-    }
     //ALOGD("[%s] mSwapDirtyRect= [%d,%d],[%d,%d], mDirtyRectRepeatCount=%d",
     //getName().string(), mSwapDirtyRect.left, mSwapDirtyRect.top, mSwapDirtyRect.right,
     //mSwapDirtyRect.bottom, mDirtyRectRepeatCount);
