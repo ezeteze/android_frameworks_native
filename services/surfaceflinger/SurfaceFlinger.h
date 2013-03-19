@@ -440,8 +440,6 @@ private:
     SecHdmiClient *                         mHdmiClient;
 #endif
 #ifdef QCOM_HARDWARE
-   void                        setupSwapRect();
-   int                         mSwapRectEnable;
 public:
    int isCopybitComposition() const;
 #endif

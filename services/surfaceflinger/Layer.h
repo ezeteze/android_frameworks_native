@@ -85,10 +85,6 @@ public:
     virtual void onLayerDisplayed();
     virtual bool onPreComposition();
 
-#ifdef QCOM_HARDWARE
-    virtual bool canUseSwapRect(Region& consolidateVisibleRegion, Rect& dirtyRect) const;
-#endif
-
     // only for debugging
     inline const sp<GraphicBuffer>& getActiveBuffer() const { return mActiveBuffer; }
 
@@ -142,10 +138,6 @@ private:
     const GLExtensions& mGLExtensions;
     bool mOpaqueLayer;
     bool mNeedsDithering;
-#ifdef QCOM_HARDWARE
-    uint32_t mDirtyRectRepeatCount;
-    Rect mSwapDirtyRect;
-#endif
 
     // page-flip thread (currently main thread)
     bool mSecure;         // no screenshots
