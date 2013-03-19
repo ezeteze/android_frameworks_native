@@ -73,7 +73,7 @@ status_t EventThread::unregisterDisplayEventConnection(
 }
 
 void EventThread::removeDisplayEventConnection(
-        const sp<EventThread::Connection>& connection) {
+        const wp<EventThread::Connection>& connection) {
     Mutex::Autolock _l(mLock);
     mDisplayEventConnections.remove(connection);
 }
@@ -128,7 +128,7 @@ bool EventThread::threadLoop() {
 
     nsecs_t timestamp;
     DisplayEventReceiver::Event vsync;
-    Vector< sp<EventThread::Connection> > displayEventConnections;
+    Vector< wp<EventThread::Connection> > displayEventConnections;
 
     do {
         Mutex::Autolock _l(mLock);
@@ -222,7 +222,7 @@ bool EventThread::threadLoop() {
 
     const size_t count = displayEventConnections.size();
     for (size_t i=0 ; i<count ; i++) {
-        sp<Connection> conn(displayEventConnections[i]);
+        sp<Connection> conn(displayEventConnections[i].promote());
         // make sure the connection didn't die
         if (conn != NULL) {
             status_t err = conn->postEvent(vsync);
