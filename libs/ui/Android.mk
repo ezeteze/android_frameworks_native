@@ -60,10 +60,6 @@ ifeq ($(BOARD_USES_LEGACY_OVERLAY), true)
 LOCAL_SRC_FILES += legacy/Overlay.cpp
 endif
 
-ifeq ($(BOARD_USES_HWCOMPOSER), false)
-	LOCAL_CFLAGS += -DNO_HWCOMPOSER
-endif
-
 LOCAL_MODULE:= libui
 
 include $(BUILD_SHARED_LIBRARY)
