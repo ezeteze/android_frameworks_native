@@ -110,9 +110,6 @@ public:
     void dump(String8& out, char* scratch, size_t SIZE,
             const Vector< sp<LayerBase> >& visibleLayersSortedByZ) const;
 
-#ifdef QCOM_HARDWARE
-    int isCopybitComposition() const;
-#endif
 private:
 
     struct callbacks : public hwc_procs_t {
@@ -140,9 +137,6 @@ private:
     size_t                  mCapacity;
     mutable size_t          mNumOVLayers;
     mutable size_t          mNumFBLayers;
-#ifdef QCOM_HARDWARE
-    mutable size_t          mNumCopybitLayers;
-#endif
     hwc_display_t           mDpy;
     hwc_surface_t           mSur;
     cb_context              mCBContext;
